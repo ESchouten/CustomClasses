@@ -41,3 +41,22 @@ class NoHtmlListValidator : ConstraintValidator<NoHtml, Collection<String>> {
     return true
   }
 }
+
+@Target(AnnotationTarget.FIELD)
+@Retention
+@Constraint(validatedBy = [NoHtmlMapValidator::class])
+annotation class NoHtmlMap(val message: String = "Html was found in string",
+                            val groups: Array<KClass<*>> = [],
+                            val payload: Array<KClass<out Payload>> = [])
+
+class NoHtmlMapValidator : ConstraintValidator<NoHtml, Map<String, String>> {
+  override fun isValid(map: Map<String, String>, context: ConstraintValidatorContext?): Boolean {
+    for (entry in map.entries) {
+      var normalizedHtml = Normalizer.normalize(entry.key, Normalizer.Form.NFKC)
+      if (!Jsoup.isValid(normalizedHtml, Whitelist.none())) return false
+      normalizedHtml = Normalizer.normalize(entry.value, Normalizer.Form.NFKC)
+      if (!Jsoup.isValid(normalizedHtml, Whitelist.none())) return false
+    }
+    return true
+  }
+}
