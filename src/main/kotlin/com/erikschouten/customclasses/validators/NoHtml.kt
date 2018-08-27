@@ -23,3 +23,21 @@ class NoHtmlValidator : ConstraintValidator<NoHtml, String> {
     return Jsoup.isValid(normalizedHtml, Whitelist.none())
   }
 }
+
+@Target(AnnotationTarget.FIELD)
+@Retention
+@Constraint(validatedBy = [NoHtmlListValidator::class])
+annotation class NoHtmlList(val message: String = "Html was found in string",
+                            val groups: Array<KClass<*>> = [],
+                            val payload: Array<KClass<out Payload>> = [])
+
+class NoHtmlListValidator : ConstraintValidator<NoHtml, Collection<String>> {
+  override fun isValid(collection: Collection<String>, context: ConstraintValidatorContext?): Boolean {
+    for (value in collection) {
+      val normalizedHtml = Normalizer.normalize(value, Normalizer.Form.NFKC)
+      if (!Jsoup.isValid(normalizedHtml, Whitelist.none())) return false
+    }
+
+    return true
+  }
+}
