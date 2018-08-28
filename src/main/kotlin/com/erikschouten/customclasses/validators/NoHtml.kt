@@ -31,7 +31,7 @@ annotation class NoHtmlList(val message: String = "Html was found in string",
                             val groups: Array<KClass<*>> = [],
                             val payload: Array<KClass<out Payload>> = [])
 
-class NoHtmlListValidator : ConstraintValidator<NoHtml, Collection<String>> {
+class NoHtmlListValidator : ConstraintValidator<NoHtmlList, Collection<String>> {
   override fun isValid(collection: Collection<String>, context: ConstraintValidatorContext?): Boolean {
     for (value in collection) {
       val normalizedHtml = Normalizer.normalize(value, Normalizer.Form.NFKC)
@@ -49,7 +49,7 @@ annotation class NoHtmlMap(val message: String = "Html was found in string",
                             val groups: Array<KClass<*>> = [],
                             val payload: Array<KClass<out Payload>> = [])
 
-class NoHtmlMapValidator : ConstraintValidator<NoHtml, Map<String, String>> {
+class NoHtmlMapValidator : ConstraintValidator<NoHtmlMap, Map<String, String>> {
   override fun isValid(map: Map<String, String>, context: ConstraintValidatorContext?): Boolean {
     for (entry in map.entries) {
       var normalizedHtml = Normalizer.normalize(entry.key, Normalizer.Form.NFKC)
