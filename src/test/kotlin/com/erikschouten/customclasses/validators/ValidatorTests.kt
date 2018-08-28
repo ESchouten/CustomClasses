@@ -35,9 +35,16 @@ class ValidatorTests {
 
     violations = validator.validate(Obj(map = mapOf(Pair("s", "<script src=http://www.example.com/malicious-code.js></script>"))))
     assert(violations.size == 1)
+
+    violations = validator.validate(Obj("s", listOf("s"), mapOf(Pair("s", "s"))))
+    assert(violations.isEmpty())
   }
 
   data class Obj(@field:[NoHtml] val string: String? = null,
                  @field:[NoHtmlList] val list: List<String>? = null,
                  @field:[NoHtmlMap] val map: Map<String, String>? = null)
+
+  data class Str(@field:[NoHtml] val string: String,
+                 @field:[NoHtmlList] val list: List<String>,
+                 @field:[NoHtmlMap] val map: Map<String, String>)
 }
