@@ -54,6 +54,16 @@ class ValidatorTests {
         assert(violations.isEmpty())
     }
 
+    @Test
+    fun password() {
+        var violations = validator.validate(Pwd("aaAA22!!"))
+        assert(violations.size == 0)
+        violations = validator.validate(Pwd("aaAA2!!"))
+        assert(violations.size == 1)
+        violations = validator.validate(Pwd("aaAA2222"))
+        assert(violations.size == 1)
+    }
+
     data class Obj(@field:[NoHtml] val string: String? = null,
                    @field:[NoHtmlList] val list: List<String>? = null,
                    @field:[NoHtmlMap] val map: Map<String, String>? = null)
@@ -63,4 +73,6 @@ class ValidatorTests {
                    @field:[NoHtmlMap] val map: Map<String, String>)
 
     data class EmailObj(@field:[Email] val value: String)
+
+    data class Pwd(@field:[Password] val password: String)
 }

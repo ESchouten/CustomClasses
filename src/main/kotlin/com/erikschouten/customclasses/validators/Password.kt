@@ -15,6 +15,6 @@ annotation class Password(val message: String = "Invalid password",
 
 class PasswordValidator : ConstraintValidator<Password, String> {
     override fun isValid(value: String, context: ConstraintValidatorContext?): Boolean {
-        return value.matches(Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\$@\$!%*?&])[A-Za-z\\d\$@\$!%*?&]{8,}"))
+        return value.matches(Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%^&*_=+-]).{8,}\$"))
     }
 }
