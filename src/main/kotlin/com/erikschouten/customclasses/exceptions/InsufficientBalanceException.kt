@@ -1,3 +1,3 @@
 package com.erikschouten.customclasses.exceptions
 
-class InsufficientBalanceException(override var message: String) : RuntimeException(message)
+class InsufficientBalanceException(message: String) : RuntimeException(message)

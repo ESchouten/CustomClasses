@@ -1,3 +1,3 @@
 package com.erikschouten.customclasses.exceptions
 
-class AlreadyExistsException(override var message: String) : RuntimeException(message)
+class AlreadyExistsException(message: String) : RuntimeException(message)

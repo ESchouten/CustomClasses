@@ -1,3 +1,3 @@
 package com.erikschouten.customclasses.exceptions
 
-class ExternalConflictException(override var message: String) : RuntimeException(message)
+class ExternalConflictException(message: String) : RuntimeException(message)

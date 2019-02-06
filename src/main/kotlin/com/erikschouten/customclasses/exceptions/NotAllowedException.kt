@@ -1,3 +1,3 @@
 package com.erikschouten.customclasses.exceptions
 
-class NotAllowedException(override var message: String) : RuntimeException(message)
+class NotAllowedException(message: String) : RuntimeException(message)

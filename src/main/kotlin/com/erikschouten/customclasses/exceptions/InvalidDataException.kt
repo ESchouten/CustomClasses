@@ -1,3 +1,3 @@
 package com.erikschouten.customclasses.exceptions
 
-class InvalidDataException(override var message: String) : RuntimeException(message)
+class InvalidDataException(message: String) : RuntimeException(message)

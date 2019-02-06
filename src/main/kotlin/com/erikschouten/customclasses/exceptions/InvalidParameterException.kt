@@ -1,3 +1,3 @@
 package com.erikschouten.customclasses.exceptions
 
-class InvalidParameterException(override var message: String) : RuntimeException(message)
+class InvalidParameterException(message: String) : RuntimeException(message)

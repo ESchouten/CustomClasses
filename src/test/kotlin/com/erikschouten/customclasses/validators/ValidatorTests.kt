@@ -65,12 +65,12 @@ class ValidatorTests {
     }
 
     data class Obj(@field:[NoHtml] val string: String? = null,
-                   @field:[NoHtmlList] val list: List<String>? = null,
-                   @field:[NoHtmlMap] val map: Map<String, String>? = null)
+                   @field:[NoHtml] val list: List<String>? = null,
+                   @field:[NoHtml] val map: Map<String, String>? = null)
 
     data class Str(@field:[NoHtml] val string: String,
-                   @field:[NoHtmlList] val list: List<String>,
-                   @field:[NoHtmlMap] val map: Map<String, String>)
+                   @field:[NoHtml] val list: List<String>,
+                   @field:[NoHtml] val map: Map<String, String>)
 
     data class EmailObj(@field:[Email] val value: String)
 
