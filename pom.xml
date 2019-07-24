@@ -6,7 +6,7 @@
 
     <groupId>com.erikschouten</groupId>
     <artifactId>CustomClasses</artifactId>
-    <version>0.1.10-SNAPSHOT</version>
+    <version>0.1.10</version>
 
     <!--mvn versions:update-properties-->
     <!--mvn versions:commit-->
