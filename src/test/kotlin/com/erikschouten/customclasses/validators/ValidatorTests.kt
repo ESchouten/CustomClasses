@@ -16,6 +16,25 @@ class ValidatorTests {
     }
 
     @Test
+    fun nonTransparentHEXColor() {
+        var violations = validator.validate(ColorObj("#fff"))
+        assert(violations.isEmpty())
+        violations = validator.validate(ColorObj("#FFF"))
+        assert(violations.isEmpty())
+        violations = validator.validate(ColorObj("#FAFAFA"))
+        assert(violations.isEmpty())
+        violations = validator.validate(ColorObj("#Fa9AfA"))
+        assert(violations.isEmpty())
+
+        violations = validator.validate(ColorObj("#Fa9AfAF"))
+        assert(violations.size == 1)
+        violations = validator.validate(ColorObj("#Fa9Af"))
+        assert(violations.size == 1)
+        violations = validator.validate(ColorObj("#FAFAFG"))
+        assert(violations.size == 1)
+    }
+
+    @Test
     fun email() {
         //Valid
         var violations = validator.validate(EmailObj("e@e.nl"))
@@ -75,4 +94,6 @@ class ValidatorTests {
     data class EmailObj(@field:[Email] val value: String)
 
     data class Pwd(@field:[Password] val password: String)
+
+    data class ColorObj(@field:[HexColorNonTransparent] val color: String)
 }
