@@ -1,7 +1,5 @@
 package com.erikschouten.customclasses.exceptions.handling
 
-import java.lang.Exception
-
 fun getMessage(objectName: String?, field: String?, status: Int?, message: String?): String {
     var exception = ""
     if (status != null) exception += "$status: "
