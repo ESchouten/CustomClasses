@@ -11,7 +11,7 @@
     <!--mvn versions:update-properties-->
     <!--mvn versions:commit-->
     <properties>
-        <kotlin.version>1.4.10</kotlin.version>
+        <kotlin.version>1.6.0</kotlin.version>
 
         <validation-api.version>2.0.1.Final</validation-api.version>
         <jsoup.version>1.13.1</jsoup.version>
